@@ -24,9 +24,5 @@ if test -f /Users/rmn/miniconda3/bin/conda
 end
 # <<< conda initialize <<<
 
-# use custom conda environment instead of base
-conda activate DataScience
-
-
 # show neofetch at startup
 neofetch
