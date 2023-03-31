@@ -1,0 +1,7 @@
+{
+    "jobs_tab_visibility": "shown",
+    "initial_working_directory": "~",
+    "spelling_dictionary_language": "en_AU",
+    "posix_terminal_shell": "zsh",
+    "show_terminal_tab": false
+}
