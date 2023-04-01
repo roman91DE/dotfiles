@@ -5,12 +5,22 @@ from os import listdir, path
 from typing import List
 from sys import stdout, stderr, exit
 
+
 def safety_check():
     """ warn user to avoid the loss of existing dot files """
     print(f"Warning: Running this script will overwrite all existing configuration files!", file=stderr)
     if input("Type yes to continue: ") != "yes":
         print("Aborted Process", file=stderr)
         exit()
+
+
+def prepend_dot(file: str) -> str:
+        """ Prepends a dot to filenames """
+        if file.startswith("."):
+            return file
+        else:
+            return f".{file}"
+
 
 def main():
 
@@ -23,6 +33,8 @@ def main():
     CONFIG_DIR = "dotfile-directory"
     CONFIGFILES: List[str] = listdir(CONFIG_DIR)
 
+    
+
     for file in CONFIGFILES:
 
         command = [
@@ -31,7 +43,7 @@ def main():
             "-F",
             "-f",
             path.join(HOME_DIR, REPO, CONFIG_DIR, file),
-            path.join(HOME_DIR, file),
+            path.join(HOME_DIR, prepend_dot(file)),
         ]
 
         print(f"Linking configuration file <{file}> with:")
