@@ -15,7 +15,9 @@ fish_vi_key_bindings
 set fish_greeting "Using Non-Posix compliant Fish Shell"
 
 # abbreviations
-abbr --add .git '/usr/bin/git --git-dir=$HOME/.git/ --work-tree=$HOME'
+
+# vs codium alias
+abbr --add code codium
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

@@ -7,5 +7,5 @@ bindkey -v
 # aliases
 
 # git command for dotfiles in $HOME
-alias .git='/usr/bin/git --git-dir=$HOME/.git/ --work-tree=$HOME'
+alias codium=code
 
