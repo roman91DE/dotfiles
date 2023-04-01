@@ -5,17 +5,16 @@ from os import listdir, path
 from typing import List
 from sys import stdout, stderr, exit
 
-def main():
-
-    def safetyCheck():
-        print(f"Warning: Running this script will overwrite all existing configuration files!", file=stderr)
-        return input("Type yes to continue: ")
-
-
-    if safetyCheck() != "yes":
+def safety_check():
+    """ warn user to avoid the loss of existing dot files """
+    print(f"Warning: Running this script will overwrite all existing configuration files!", file=stderr)
+    if input("Type yes to continue: ") != "yes":
         print("Aborted Process", file=stderr)
         exit()
 
+def main():
+
+    safety_check()
     
     print(f"Starting to create Symbolic Links...\n---")
 
@@ -26,9 +25,7 @@ def main():
 
     for file in CONFIGFILES:
 
-        print(f"Linking <{file}> with:")
-
-        CMD = [
+        command = [
             "ln",
             "-s",
             "-F",
@@ -37,12 +34,14 @@ def main():
             path.join(HOME_DIR, file),
         ]
 
-        for token in CMD:
+        print(f"Linking configuration file <{file}> with:")
+
+        for token in command:
             print(token, end=" ")
         print()
 
         result = run(
-            CMD,
+            command,
             capture_output=True,
             text=True
         )
