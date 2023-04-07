@@ -16,9 +16,6 @@ set fish_greeting "Using Non-Posix compliant Fish Shell"
 
 # abbreviations
 
-# vs codium alias
-abbr --add code codium
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if test -f /Users/rmn/miniconda3/bin/conda
