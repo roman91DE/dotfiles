@@ -5,7 +5,13 @@ end
 # adding PATHs
 
 # homebrew on apple silicone
-fish_add_path /opt/homebrew/bin
+switch (uname)
+    case Darwin
+            fish_add_path /opt/homebrew/bin
+    case '*'
+            echo Skipped MacOs Setup
+end
+
 
 
 # vi mode
