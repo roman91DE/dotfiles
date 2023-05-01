@@ -12,7 +12,9 @@ switch (uname)
             echo Skipped MacOs Setup
 end
 
+# custom Scripts folder
 
+fish_add_path ~/Scripts
 
 # vi mode
 fish_vi_key_bindings
