@@ -26,9 +26,25 @@ set fish_greeting "Using Non-Posix compliant Fish Shell"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if test -f /Users/rmn/miniconda3/bin/conda
-    eval /Users/rmn/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+
+# modified to work with different user names and conda versions
+set -l USERS rmn roman
+set -l CONDAS miniconda anaconda
+set -l VERSIONS 2 3
+
+for USER in $USERS
+    for CONDA in $CONDAS
+        for VERSION in $VERSIONS
+            set -l path /Users/$USER/$CONDA$VERSION/bin/conda
+            if test -f $path
+                eval $path "shell.fish" "hook" $argv | source
+                break 3
+            end
+        end
+    end
 end
+
+
 # <<< conda initialize <<<
 
 # show neofetch at startup
