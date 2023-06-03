@@ -17,12 +17,17 @@ end
 # Linux specific setup
 switch (uname)
     case Linux
+	    switch (uname -o)
+		    case Android
+			abbr -a -g pkg-up "pkg upgrade"
+			echo Termux Setup
+		end
+	case (*)
             abbr -a -g apt-up "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y&& sudo apt clean -y"
             abbr -a -g snap-up "sudo snap refresh"
             abbr -a -g pacman-up "sudo pacman -Syu"
             abbr -a -g yay-up "yay -Syu"
-            abbr -a -g pkg-up "pkg upgrade"
-            echo Linux Setup
+                        echo Linux Setup
 end
 
 # (python) - pip specific setup
