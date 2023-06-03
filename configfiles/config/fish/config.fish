@@ -3,7 +3,13 @@ if status is-interactive
     # show neofetch at startup
     neofetch
 
-    # vi mode
+    # set the default editor
+    set -gx EDITOR vim
+
+    # set the default pager
+    set -gx PAGER less
+
+    # vi keybindings
     fish_vi_key_bindings
 
     # use a custom fish greeting that shows the version number
@@ -13,20 +19,18 @@ if status is-interactive
 
 end
 
-
-
-# Linux specific setup
+# OS specific setup
 switch (uname)
-    case Darwin
+    case Darwin     # MacOs
             set -gx fish_user_paths /opt/homebrew/bin
             abbr -a -g brew-up "brew update && brew upgrade && brew cleanup"
             echo MacOs Setup            
     case Linux
 	    switch (uname -o)
-		    case Android
+		    case Android    # Termux/Linux Emulator
                 abbr -a -g pkg-up "pkg upgrade"
                 echo Termux Setup
-	        case (*)
+	        case (*)    # Linux
                 abbr -a -g apt-up "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y&& sudo apt clean -y"
                 abbr -a -g snap-up "sudo snap refresh"
                 abbr -a -g pacman-up "sudo pacman -Syu"
@@ -41,17 +45,11 @@ if command -v pip > /dev/null
 end
 
 
-# add custom Scripts folder to path
-for dir in ~/Scripts ~/scripts 
-    if test -d $dir
-        set -gx fish_user_paths $dir
-    end
-end
+# add all script directories to the path
+set -gx fish_user_paths $fish_user_paths (find ~/ -maxdepth 1 -type d -iname "*script*" | tr '\n' ' ')
 
 
-
-# >>> conda initialize >>>
-# modified to work with different user names and conda versions
+# modified conda initialize to work with different user names and conda versions
 set -l USERS rmn roman
 set -l CONDAS miniconda anaconda
 set -l VERSIONS 2 3
@@ -68,5 +66,4 @@ for USER in $USERS
         end
     end
 end
-# <<< conda initialize <<<
 
