@@ -23,25 +23,25 @@ end
 switch (uname)
     case Darwin     # MacOs
             set -gx fish_user_paths /opt/homebrew/bin
-            abbr -a -g brew-up "brew update && brew upgrade && brew cleanup"
+            abbr -a -g ,brew-up "brew update && brew upgrade && brew cleanup"
             echo MacOs Setup            
     case Linux
 	    switch (uname -o)
 		    case Android    # Termux/Linux Emulator
-                	abbr -a -g pkg-up "pkg upgrade"
+                	abbr -a -g ,pkg-up "pkg upgrade"
                 	echo Termux Setup
 	            case '*'    # Linux
-                	abbr -a -g apt-up "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y&& sudo apt clean -y"
-                abbr -a -g snap-up "sudo snap refresh"
-                abbr -a -g pacman-up "sudo pacman -Syu"
-                abbr -a -g yay-up "yay -Syu"
+                	abbr -a -g ,apt-up "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y&& sudo apt clean -y"
+                abbr -a -g ,snap-up "sudo snap refresh"
+                abbr -a -g ,pacman-up "sudo pacman -Syu"
+                abbr -a -g ,yay-up "yay -Syu"
                 echo Linux Setup
         end
 end
 
 # (python) - pip specific setup
 if command -v pip > /dev/null
-    abbr -a -g pip-up "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+    abbr -a -g ,pip-up "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 end
 
 
@@ -60,7 +60,7 @@ for USER in $USERS
             set -l path /Users/$USER/$CONDA$VERSION/bin/conda
             if test -f $path
                 eval $path "shell.fish" "hook" $argv | source
-                abbr -a -g conda-up "conda update --all"
+                abbr -a -g ,conda-up "conda update --all"
                 break
             end
         end

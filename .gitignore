@@ -1,0 +1,4 @@
+# ignore all files in configfiles/config/fish/ except config.fish
+configfiles/config/fish/*
+!configfiles/config/config.fish
+
