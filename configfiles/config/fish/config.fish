@@ -9,6 +9,9 @@ if status is-interactive
     # set the default pager
     set -gx PAGER less
 
+    # add abbreviations for git add * && git commit -m "message" && git push where message is the date and time of the commit
+    abbr -a -g ,gacp "git add * && git commit -m (date +%Y-%m-%d_%H:%M:%S) && git push"
+
     # vi keybindings
     fish_vi_key_bindings
 
