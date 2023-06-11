@@ -10,7 +10,7 @@ if status is-interactive
             switch (uname -o)
                 case Android    # Termux/Linux Emulator
                         abbr -a -g ,pkg-up "pkg upgrade"
-			abbr -a -g ,run-fedora "'proot-distro login fedora"
+			abbr -a -g ,run-fedora "proot-distro login fedora"
                         echo Termux Setup
                     case '*'    # Linux
                         abbr -a -g ,apt-up "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y&& sudo apt clean -y"
