@@ -21,6 +21,14 @@ if status is-interactive
             end
     end
 
+    # test if nvim is installed and if so, set an abbreviation for nvimnto vim
+    if command -v nvim > /dev/null
+	    echo replacing vim with neovim
+	    abbr -a -g vim "nvim"
+    end
+    
+    
+
     # (python) - pip specific setup
     if command -v pip > /dev/null
         abbr -a -g ,pip-up "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
