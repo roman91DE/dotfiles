@@ -9,6 +9,7 @@ if status is-interactive
         case Linux
             switch (uname -o)
                 case Android    # Termux/Linux Emulator
+			set -gx fish_user_paths /data/data/com.termux/files/home/.shortcuts
                         abbr -a -g ,pkg-up "pkg upgrade"
 			abbr -a -g ,run-debian "proot-distro login debian --termux-home"
                         echo Termux Setup
