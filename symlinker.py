@@ -89,7 +89,6 @@ def main():
                     f"Replacing {link_path} as it is is already a symbolic link",
                     file=sys.stderr,
                 )
-                continue
 
             # backup existing files if option selected
             elif (not os.path.islink(link_path)) and create_backups:
