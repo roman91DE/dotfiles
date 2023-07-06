@@ -4,7 +4,7 @@ if status is-interactive
     switch (uname)
         case Darwin     # MacOs
                 set -gx fish_user_paths /opt/homebrew/bin
-                abbr -a -g ,brew-up "brew update && brew upgrade && brew cleanup"
+                abbr -a -g ,brew-up "brew update ; brew upgrade ; brew cleanup"
                 echo MacOs Setup            
         case Linux
             switch (uname -o)
@@ -14,7 +14,7 @@ if status is-interactive
 			abbr -a -g ,run-debian "proot-distro login debian --termux-home"
                         echo Termux Setup
                     case '*'    # Linux
-                        abbr -a -g ,apt-up "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y&& sudo apt clean -y"
+                        abbr -a -g ,apt-up "sudo apt update ; sudo apt upgrade -y ; sudo apt autoremove -y; sudo apt clean -y"
                     abbr -a -g ,snap-up "sudo snap refresh"
                     abbr -a -g ,pacman-up "sudo pacman -Syu"
                     abbr -a -g ,yay-up "yay -Syu"
@@ -69,7 +69,7 @@ if status is-interactive
     # set the default pager
     set -gx PAGER less
 
-    # add abbreviations for git add * && git commit -m "message" && git push where message is the date and time of the commit
+    # add abbreviations for git add * ; git commit -m "message" ; git push where message is the date and time of the commit
     abbr -a -g ,gacp "git add * ; git commit -m (date +%Y-%m-%d_%H:%M:%S) ; git push"
 
     # vi keybindings
