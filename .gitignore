@@ -6,3 +6,4 @@ configfiles/config/fish/*
 
 configfiles/ipython
 !configfiles/ipython/profile_*/ipython_config.py
+!configfiles/ipython/profile_*/startup
