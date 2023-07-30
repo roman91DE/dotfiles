@@ -2,3 +2,7 @@
 configfiles/config/fish/*
 !configfiles/config/config.fish
 
+# ipython local files
+
+configfiles/ipython
+!configfiles/ipython/profile_*/ipython_config.py
