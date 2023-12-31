@@ -7,3 +7,7 @@ configfiles/config/fish/*
 configfiles/ipython
 !configfiles/ipython/profile_*/ipython_config.py
 !configfiles/ipython/profile_*/startup
+
+# github copilot cli
+configfiles/config/gh/config.yml
+configfiles/config/gh/hosts.yml
