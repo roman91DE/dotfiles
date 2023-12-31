@@ -59,6 +59,8 @@ if status is-interactive
     end
 
 
+    # github copilot cli
+    abbr -a -g ,copi gh copilot
 
     # show neofetch at startup
     neofetch
