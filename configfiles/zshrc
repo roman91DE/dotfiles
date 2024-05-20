@@ -101,4 +101,77 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-bindkey -v
+
+
+# Check if the shell is interactive
+if [[ $- == *i* ]]; then
+
+    # OS specific setup
+    case "$(uname)" in
+        Darwin) # MacOS
+            export PATH="/opt/homebrew/bin:$PATH"
+            alias ,brew-up="brew update ; brew upgrade ; brew cleanup"
+            echo "MacOS Setup"
+            ;;
+        Linux)
+            case "$(uname -o)" in
+                Android) # Termux/Linux Emulator
+                    export PATH="/data/data/com.termux/files/home/.shortcuts:$PATH"
+                    alias ,pkg-up="pkg upgrade"
+                    alias ,run-debian="proot-distro login debian --termux-home"
+                    echo "Termux Setup"
+                    ;;
+                *) # Linux
+                    alias ,apt-up="sudo apt update ; sudo apt upgrade -y ; sudo apt autoremove -y; sudo apt clean -y"
+                    alias ,snap-up="sudo snap refresh"
+                    alias ,pacman-up="sudo pacman -Syu"
+                    alias ,yay-up="yay -Syu"
+                    echo "Linux Setup"
+                    ;;
+            esac
+            ;;
+    esac
+
+
+    # Add all script directories to the path
+    for dir in $(find ~ -maxdepth 1 -type d -iname "*script*"); do
+        export PATH="$dir:$PATH"
+    done
+
+    # Modified conda initialize to work with different user names and conda versions
+    USERS=("rmn" "roman")
+    CONDAS=("miniconda" "anaconda")
+    VERSIONS=("2" "3")
+
+    for USER in "${USERS[@]}"; do
+        for CONDA in "${CONDAS[@]}"; do
+            for VERSION in "${VERSIONS[@]}"; do
+                path="/Users/$USER/$CONDA$VERSION/bin/conda"
+                if [[ -f $path ]]; then
+                    eval "$($path shell.zsh hook)"
+                    alias ,conda-up="conda update --all"
+                    break 3
+                fi
+            done
+        done
+    done
+
+    # Set the default editor
+    export EDITOR="vim"
+
+    # Set the default pager
+    export PAGER="less"
+
+    # Add aliases for git add * ; git commit -m "message" ; git push where message is the date and time of the commit
+    alias ,gacp='git add * ; git commit -m "$(date +%Y-%m-%d_%H:%M:%S)" ; git push'
+
+    # vi keybindings
+    bindkey -v
+
+    # Use a custom Zsh greeting that shows the version number
+    function zsh_greeting {
+        echo "zsh version: $(zsh --version | cut -d ' ' -f 2)"
+    }
+    zsh_greeting
+
+fi
