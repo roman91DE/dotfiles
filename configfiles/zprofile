@@ -9,3 +9,8 @@ bindkey -v
 # git command for dotfiles in $HOME
 alias codium=code
 
+if ! pgrep -f "crond" >/dev/null; then
+echo "[Starting crond...]" && crond && echo "[OK]"
+else
+echo "[crond is running]"
+fi
